@@ -8,6 +8,7 @@ export const main = () => {
 	canvas.height = 120;
 
 	const loader = new LissajousLoader(canvas);
+	loader.start();
 
 	return canvas;
 };
