@@ -1,3 +1,5 @@
+import { range } from './utils';
+
 interface Point {
 	x: number;
 	y: number;
@@ -23,14 +25,26 @@ export default class LissajousLoader {
 		};
 	}
 
+	private calculatePoints() {
+		const args = range(0, 2 * Math.PI, 0.01);
+		const xFrequence = 2;
+		const yFrequence = 3;
+
+		return args
+			.map((arg) => ({
+				x: Math.sin(xFrequence * arg), // берём амплитуду по x равной 1
+				y: Math.sin(yFrequence * arg), // берём амплитуду по y равной 1
+			}))
+			.map(this.convertPoint);
+	}
+
 	public start(): void {
 		const context = this.canvas.getContext('2d');
 		if (!context) {
 			throw new Error('Unable to get context');
 		}
 
-		const points: Point[] = [{ x: 1, y: 0 }, { x: 0, y: 1 }, { x: -1, y: 0 }, { x: 0, y: -1 }, { x: 1, y: 0 }]
-			.map(this.convertPoint);
+		const points: Point[] = this.calculatePoints();
 
 		context.beginPath();
 		context.moveTo(points[0].x, points[0].y);
@@ -39,7 +53,7 @@ export default class LissajousLoader {
 			setTimeout(() => {
 				context.lineTo(x, y);
 				context.stroke();
-			}, index * 1000)
+			}, index * 10)
 		});
 	}
 }
