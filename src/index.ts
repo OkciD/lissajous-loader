@@ -3,7 +3,7 @@ interface Point {
 	y: number;
 }
 
-class LissajousLoader {
+export default class LissajousLoader {
 	constructor(private canvas: HTMLCanvasElement) {
 	}
 
@@ -24,9 +24,3 @@ class LissajousLoader {
 	}
 }
 
-const canvas = document.querySelector('canvas');
-if (!canvas) {
-	throw new Error();
-}
-
-const loader = new LissajousLoader(canvas);
