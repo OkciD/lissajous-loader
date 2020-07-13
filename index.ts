@@ -1,17 +1,26 @@
+interface Point {
+	x: number;
+	y: number;
+}
+
 class LissajousLoader {
-	private canvasContext: CanvasRenderingContext2D;
+	constructor(private canvas: HTMLCanvasElement) {
+	}
 
-	constructor(canvas: HTMLCanvasElement) {
-		if (!canvas) {
-			throw new Error('No canvas');
-		}
+	/**
+	 * Конвертирует координаты точки тригонометрического круга в координаты точки на канвасе
+	 */
+	private convertPoint({x, y}: Point): Point {
+		const { width, height } = this.canvas.getBoundingClientRect();
+		const center: Point = {
+			x: width / 2,
+			y: height / 2,
+		};
 
-		const context = canvas.getContext('2d');
-		if (!context) {
-			throw new Error('Can not get canvas rendering context');
-		}
-
-		this.canvasContext = context;
+		return {
+			x: center.x + (x * width / 2),
+			y: center.y - (y * height / 2),
+		};
 	}
 }
 
