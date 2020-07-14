@@ -50,6 +50,7 @@ export default class LissajousLoader {
 		const points: Point[] = this.calculatePoints();
 
 		context.beginPath();
+		context.lineCap = 'round';
 		context.moveTo(points[0].x, points[0].y);
 
 		points.forEach(({x, y}, index) => {
