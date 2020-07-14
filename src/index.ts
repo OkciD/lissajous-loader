@@ -29,14 +29,14 @@ export default class LissajousLoader {
 
 	private calculatePoints() {
 		const args = range(0, 2 * Math.PI, 0.01);
-		const xFrequence = 2;
-		const yFrequence = 3;
+		const xFrequency = 2;
+		const yFrequency = 3;
 		const delta = Math.PI / 2;
 
 		return args
 			.map((arg) => ({
-				x: Math.sin(xFrequence * arg + delta), // берём амплитуду по x равной 1
-				y: Math.sin(yFrequence * arg), // берём амплитуду по y равной 1
+				x: Math.sin(xFrequency * arg + delta), // берём амплитуду по x равной 1
+				y: Math.sin(yFrequency * arg), // берём амплитуду по y равной 1
 			}))
 			.map(this.convertPoint);
 	}
