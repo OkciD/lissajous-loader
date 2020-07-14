@@ -29,8 +29,8 @@ export default class LissajousLoader {
 
 	private calculatePoints() {
 		const args = range(0, 2 * Math.PI, 0.01);
-		const xFrequency = 2;
-		const yFrequency = 3;
+		const xFrequency = 3;
+		const yFrequency = 2;
 		const delta = Math.PI / 2;
 
 		return args
