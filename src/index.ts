@@ -14,14 +14,16 @@ export default class LissajousLoader {
 	 */
 	private readonly convertPoint = ({x, y}: Point): Point => {
 		const { width, height } = this.canvas;
+		const padding = 16;
+
 		const center: Point = {
 			x: width / 2,
 			y: height / 2,
 		};
 
 		return {
-			x: center.x + (x * width / 2),
-			y: center.y - (y * height / 2),
+			x: center.x + (x * (width - padding) / 2),
+			y: center.y - (y * (height - padding) / 2),
 		};
 	}
 
