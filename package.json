@@ -19,6 +19,7 @@
   "homepage": "https://github.com/OkciD/lissajous-loader#readme",
   "devDependencies": {
     "@babel/core": "7.10.4",
+    "@storybook/addon-knobs": "5.3.19",
     "@storybook/html": "5.3.19",
     "babel-loader": "8.1.0",
     "ts-loader": "8.0.0",
