@@ -9,7 +9,7 @@ interface Props {
 	xFrequency: number;
 	yFrequency: number;
 	delta: number;
-	step: number;
+	step?: number;
 	period: number;
 	padding?: number;
 }
@@ -37,7 +37,7 @@ export default class LissajousLoader {
 	}
 
 	private calculatePoints() {
-		const { step, xFrequency, yFrequency, delta } = this.props;
+		const { step = 0.01, xFrequency, yFrequency, delta } = this.props;
 
 		const args = range(0, 2 * Math.PI, step);
 
