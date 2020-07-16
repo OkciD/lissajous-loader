@@ -12,7 +12,14 @@ export const main = () => {
 	canvas.width = canvasSize;
 	canvas.height = canvasSize;
 
-	const loader = new LissajousLoader(canvas);
+	const loader = new LissajousLoader(canvas, {
+		xFrequency: number('X frequency', 3),
+		yFrequency: number('Y frequency', 2),
+		delta: number('Delta', Math.PI / 2),
+		step: number('Step', 0.01),
+		period: number('Period', 1000),
+		padding: number('Padding', 16),
+	});
 	loader.start();
 
 	return canvas;

@@ -5,8 +5,17 @@ interface Point {
 	y: number;
 }
 
+interface Props {
+	xFrequency: number;
+	yFrequency: number;
+	delta: number;
+	step: number;
+	period: number;
+	padding?: number;
+}
+
 export default class LissajousLoader {
-	constructor(private canvas: HTMLCanvasElement) {
+	constructor(private canvas: HTMLCanvasElement, private props: Props) {
 	}
 
 	/**
@@ -14,7 +23,7 @@ export default class LissajousLoader {
 	 */
 	private readonly convertPoint = ({x, y}: Point): Point => {
 		const { width, height } = this.canvas;
-		const padding = 16;
+		const { padding = 16 } = this.props;
 
 		const center: Point = {
 			x: width / 2,
@@ -28,10 +37,9 @@ export default class LissajousLoader {
 	}
 
 	private calculatePoints() {
-		const args = range(0, 2 * Math.PI, 0.01);
-		const xFrequency = 3;
-		const yFrequency = 2;
-		const delta = Math.PI / 2;
+		const { step, xFrequency, yFrequency, delta } = this.props;
+
+		const args = range(0, 2 * Math.PI, step);
 
 		return args
 			.map((arg) => ({
@@ -55,7 +63,8 @@ export default class LissajousLoader {
 
 		points.forEach(({x, y}, index) => {
 			setTimeout(() => {
-				context.lineTo(x, y);
+				// context.lineTo(x, y);
+				context.fillRect(x, y, 1, 1);
 				context.stroke();
 			}, index * 10)
 		});
