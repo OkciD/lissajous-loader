@@ -56,6 +56,7 @@ export default class LissajousLoader {
 		}
 
 		const points: Point[] = this.calculatePoints();
+		const timePerPoint = this.props.period / points.length;
 
 		context.beginPath();
 		context.lineCap = 'round';
@@ -66,7 +67,7 @@ export default class LissajousLoader {
 				// context.lineTo(x, y);
 				context.fillRect(x, y, 1, 1);
 				context.stroke();
-			}, index * 10)
+			}, index * timePerPoint)
 		});
 	}
 }
