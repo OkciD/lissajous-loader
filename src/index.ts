@@ -15,7 +15,28 @@ interface Props {
 }
 
 export default class LissajousLoader {
-	constructor(private canvas: HTMLCanvasElement, private props: Props) {
+	private readonly canvas: HTMLCanvasElement
+	private readonly context: CanvasRenderingContext2D;
+	private readonly props: Props;
+	private readonly pointsIterator: IterableIterator<Point>;
+	private readonly timePerPoint: number;
+	private lastRenderingTime: number = 0;
+
+	constructor(canvas: HTMLCanvasElement, props: Props) {
+		this.canvas = canvas;
+
+		const context = this.canvas.getContext('2d');
+		if (!context) {
+			throw Error('Unable to get 2d context from canvas');
+		}
+		this.context = context;
+
+		this.props = {...props};
+
+		const points = this.calculatePoints();
+		this.pointsIterator = points.values();
+
+		this.timePerPoint = this.props.period / points.length;
 	}
 
 	/**
@@ -36,7 +57,7 @@ export default class LissajousLoader {
 		};
 	}
 
-	private calculatePoints() {
+	private calculatePoints(): Array<Point> {
 		const { step = 0.01, xFrequency, yFrequency, delta } = this.props;
 
 		const args = range(0, 2 * Math.PI, step);
@@ -50,25 +71,37 @@ export default class LissajousLoader {
 	}
 
 	public start(): void {
-		const context = this.canvas.getContext('2d');
-		if (!context) {
-			throw new Error('Unable to get context');
+		const initialPoint = this.pointsIterator.next().value;
+
+		this.context.beginPath();
+		this.context.lineCap = 'round';
+		this.context.moveTo(initialPoint.x, initialPoint.y);
+
+		requestAnimationFrame(this.drawingStep)
+	}
+
+	private readonly drawingStep = (time: number) => {
+		if (!this.lastRenderingTime) {
+			this.lastRenderingTime = time;
 		}
 
-		const points: Point[] = this.calculatePoints();
-		const timePerPoint = this.props.period / points.length;
+		if (time - this.lastRenderingTime < this.timePerPoint) {
+			requestAnimationFrame(this.drawingStep);
+			return;
+		}
 
-		context.beginPath();
-		context.lineCap = 'round';
-		context.moveTo(points[0].x, points[0].y);
+		const { done, value } = this.pointsIterator.next();
+		if (done) {
+			return;
+		}
 
-		points.forEach(({x, y}, index) => {
-			setTimeout(() => {
-				// context.lineTo(x, y);
-				context.fillRect(x, y, 1, 1);
-				context.stroke();
-			}, index * timePerPoint)
-		});
+		const { x, y } = value;
+		this.context.fillRect(x, y, 1, 1);
+		this.context.stroke();
+
+		this.lastRenderingTime = time;
+
+		requestAnimationFrame(this.drawingStep);
 	}
 }
 
