@@ -17,7 +17,6 @@ export const main = () => {
 		yFrequency: number('Y frequency', 2),
 		delta: number('Delta', Math.PI / 2),
 		step: number('Step', 0.01),
-		period: number('Period', 5000),
 		padding: number('Padding', 16),
 	});
 	loader.start();

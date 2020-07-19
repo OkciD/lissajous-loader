@@ -10,7 +10,6 @@ interface Props {
 	yFrequency: number;
 	delta: number;
 	step?: number;
-	period: number;
 	padding?: number;
 }
 
@@ -19,8 +18,6 @@ export default class LissajousLoader {
 	private readonly context: CanvasRenderingContext2D;
 	private readonly props: Props;
 	private readonly pointsIterator: IterableIterator<Point>;
-	private readonly timePerPoint: number;
-	private lastRenderingTime: number = 0;
 
 	constructor(canvas: HTMLCanvasElement, props: Props) {
 		this.canvas = canvas;
@@ -35,8 +32,6 @@ export default class LissajousLoader {
 
 		const points = this.calculatePoints();
 		this.pointsIterator = points.values();
-
-		this.timePerPoint = this.props.period / points.length;
 	}
 
 	/**
@@ -80,16 +75,7 @@ export default class LissajousLoader {
 		requestAnimationFrame(this.drawingStep)
 	}
 
-	private readonly drawingStep = (time: number) => {
-		if (!this.lastRenderingTime) {
-			this.lastRenderingTime = time;
-		}
-
-		if (time - this.lastRenderingTime < this.timePerPoint) {
-			requestAnimationFrame(this.drawingStep);
-			return;
-		}
-
+	private readonly drawingStep = () => {
 		const { done, value } = this.pointsIterator.next();
 		if (done) {
 			return;
@@ -98,8 +84,6 @@ export default class LissajousLoader {
 		const { x, y } = value;
 		this.context.fillRect(x, y, 1, 1);
 		this.context.stroke();
-
-		this.lastRenderingTime = time;
 
 		requestAnimationFrame(this.drawingStep);
 	}
