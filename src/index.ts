@@ -82,7 +82,8 @@ export default class LissajousLoader {
 		}
 
 		const { x, y } = value;
-		this.context.fillRect(x, y, 1, 1);
+		// this.context.fillRect(x, y, 1, 1);
+		this.context.lineTo(x, y);
 		this.context.stroke();
 
 		requestAnimationFrame(this.drawingStep);
