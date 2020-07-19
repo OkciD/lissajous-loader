@@ -18,6 +18,7 @@ export default class LissajousLoader {
 	private readonly context: CanvasRenderingContext2D;
 	private readonly props: Props;
 	private readonly pointsIterator: IterableIterator<Point>;
+	private inProgress: boolean = false;
 
 	constructor(canvas: HTMLCanvasElement, props: Props) {
 		this.canvas = canvas;
@@ -71,11 +72,20 @@ export default class LissajousLoader {
 		this.context.beginPath();
 		this.context.lineCap = 'round';
 		this.context.moveTo(initialPoint.x, initialPoint.y);
+		this.inProgress = true;
 
 		requestAnimationFrame(this.drawingStep)
 	}
 
+	public stop(): void {
+		this.inProgress = false;
+	};
+
 	private readonly drawingStep = () => {
+		if (!this.inProgress) {
+			return;
+		}
+
 		const { done, value } = this.pointsIterator.next();
 		if (done) {
 			return;
