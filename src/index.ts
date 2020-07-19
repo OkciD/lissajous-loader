@@ -11,6 +11,7 @@ interface Props {
 	delta: number;
 	step?: number;
 	padding?: number;
+	colour?: string;
 }
 
 export default class LissajousLoader {
@@ -70,9 +71,11 @@ export default class LissajousLoader {
 		this.clear();
 
 		const initialPoint = this.pointsIterator.next().value;
+		const { colour = '000000' } = this.props;
 
 		this.context.beginPath();
 		this.context.lineCap = 'round';
+		this.context.strokeStyle = colour;
 		this.context.moveTo(initialPoint.x, initialPoint.y);
 		this.inProgress = true;
 
