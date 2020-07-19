@@ -21,7 +21,5 @@ export const main = () => {
 	});
 	loader.start();
 
-	setTimeout(loader.stop.bind(loader), 1000);
-
 	return canvas;
 };

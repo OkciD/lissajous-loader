@@ -67,6 +67,8 @@ export default class LissajousLoader {
 	}
 
 	public start(): void {
+		this.clear();
+
 		const initialPoint = this.pointsIterator.next().value;
 
 		this.context.beginPath();
@@ -79,9 +81,15 @@ export default class LissajousLoader {
 
 	public stop(): void {
 		this.inProgress = false;
+		this.clear();
 	};
 
-	private readonly drawingStep = () => {
+	public clear(): void {
+		const { width, height } = this.canvas;
+		this.context.clearRect(0, 0, width, height);
+	}
+
+	private readonly drawingStep = (): void => {
 		if (!this.inProgress) {
 			return;
 		}
