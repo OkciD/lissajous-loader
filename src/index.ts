@@ -55,7 +55,7 @@ export default class LissajousLoader {
 	}
 
 	private calculatePoints(): Array<Point> {
-		const { step = 0.01, xFrequency, yFrequency, delta } = this.props;
+		const { step = 0.05, xFrequency, yFrequency, delta } = this.props;
 
 		const args = range(0, 2 * Math.PI, step);
 
