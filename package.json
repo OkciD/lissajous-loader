@@ -5,7 +5,6 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "start-storybook",
-    "build": "webpack --config webpack.config.js",
     "test": "jest --coverage"
   },
   "repository": {
