@@ -8,7 +8,7 @@ export default {
 
 export const main = () => {
 	const canvas = document.createElement('canvas');
-	const canvasSize = number('Canvas size', 80);
+	const canvasSize = number('Canvas size', 50);
 	canvas.width = canvasSize;
 	canvas.height = canvasSize;
 
