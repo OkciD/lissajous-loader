@@ -7,6 +7,9 @@ export function range(from: number, to: number, step: number): number[] {
 		current += step;
 	}
 
-	result.push(to);
+	if (to - result[result.length - 1] <= step) {
+		result.push(to);
+	}
+
 	return result;
 }
