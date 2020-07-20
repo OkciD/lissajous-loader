@@ -84,6 +84,7 @@ export default class LissajousLoader {
 	public stop(): void {
 		if (this.requestId) {
 			cancelAnimationFrame(this.requestId);
+			this.requestId = null;
 			this.clear();
 		}
 	};
