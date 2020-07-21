@@ -16,7 +16,7 @@ describe('Range helper', () => {
 
 	it('should work with integer boundaries and step that overflows the upper boundary', () => {
 		const actual: number[] = range(0, 4, 5);
-		expect(actual).toStrictEqual([0, 4]);
+		expect(actual).toStrictEqual([0]);
 	});
 
 	it('should work with integer boundaries and float step', () => {
@@ -26,19 +26,18 @@ describe('Range helper', () => {
 
 	it('should work with integer boundaries and float step that overflows the upper boundary', () => {
 		const actual: number[] = range(0, 5, 5.5);
-		expect(actual).toStrictEqual([0, 5]);
+		expect(actual).toStrictEqual([0]);
 	});
 
-	it.skip('should work with float boundaries and float step', () => {
+	it('should work with float boundaries and float step', () => {
 		const actual: number[] = range(0.1, 0.9, 0.1);
-		const expected: number[] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9];
 
 		// @ts-ignore
-		expect(actual).toBeDeepCloseTo(expected);
+		expect(actual).toBeDeepCloseTo([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]);
 	});
 
 	it('should work with float boundaries and float step that overflows the upper boundary', () => {
 		const actual: number[] = range(0.01, 0.05, 0.1);
-		expect(actual).toStrictEqual([0.01, 0.05]);
+		expect(actual).toStrictEqual([0.01]);
 	});
 });
