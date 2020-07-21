@@ -27,7 +27,7 @@ describe('LissajousLoader', () => {
 		expect(lol).toStrictEqual(4);
 
 		jest.advanceTimersByTime(20);
-		expect(lol).toStrictEqual(5);
+		expect(lol).toStrictEqual(9);
 	});
 
 	it('raf test 2', () => {
