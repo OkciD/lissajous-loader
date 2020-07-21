@@ -55,7 +55,7 @@ export default class LissajousLoader {
 	}
 
 	private calculatePoints(): Array<Point> {
-		const { step = 0.05, xFrequency, yFrequency, delta } = this.props;
+		const { step = 0.02, xFrequency, yFrequency, delta } = this.props;
 
 		const args = range(0, 2 * Math.PI, step);
 
@@ -101,8 +101,8 @@ export default class LissajousLoader {
 		}
 
 		const { x, y } = value;
-		// this.context.fillRect(x, y, 1, 1);
-		this.context.lineTo(x, y);
+		this.context.fillRect(x, y, 1.5, 1.5);
+		// this.context.lineTo(x, y);
 		this.context.stroke();
 
 		this.requestId = requestAnimationFrame(this.drawingStep);
