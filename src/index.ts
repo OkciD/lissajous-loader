@@ -59,6 +59,7 @@ export default class LissajousLoader {
 		const { step = 0.05, xFrequency, yFrequency, delta } = this.props;
 
 		const args = range(0, 2 * Math.PI, step);
+		args.push(2 * Math.PI);
 
 		return args
 			.map((arg) => ({
