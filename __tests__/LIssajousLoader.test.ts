@@ -1,3 +1,8 @@
+// @ts-ignore
+import canvasSerializer from 'jest-canvas-snapshot-serializer';
+
+expect.addSnapshotSerializer(canvasSerializer);
+
 let requestAnimationFrameMock: jest.SpyInstance;
 let cancelAnimationFrameMock: jest.SpyInstance;
 
@@ -41,6 +46,20 @@ describe('LissajousLoader', () => {
 
 		jest.runAllTimers();
 		expect(lol).toStrictEqual(4);
+	});
+
+	it('canvas test', () => {
+		const canvas = document.createElement('canvas');
+
+		canvas.width = 50;
+		canvas.height = 50;
+
+		const context = canvas.getContext('2d')!;
+		context.moveTo(0, 0);
+		context.lineTo(20, 20);
+		context.stroke();
+
+		expect(canvas).toMatchSnapshot();
 	});
 
 	afterEach(() => {
