@@ -76,6 +76,7 @@ export default class LissajousLoader {
 		this.context.beginPath();
 		this.context.lineCap = 'round';
 		this.context.strokeStyle = colour;
+		this.context.fillStyle = colour;
 		this.context.moveTo(initialPoint.x, initialPoint.y);
 
 		this.requestId = requestAnimationFrame(this.drawingStep)
