@@ -18,7 +18,9 @@ export default class LissajousLoader {
 	private readonly canvas: HTMLCanvasElement
 	private readonly context: CanvasRenderingContext2D;
 	private readonly props: Props;
-	private readonly pointsIterator: IterableIterator<Point>;
+	private readonly points: Point[];
+	private currentPointIndex: number = 0;
+	private reverse: boolean = false;
 	private requestId: number | null = null;
 
 	constructor(canvas: HTMLCanvasElement, props: Props) {
@@ -32,8 +34,7 @@ export default class LissajousLoader {
 
 		this.props = {...props};
 
-		const points = this.calculatePoints();
-		this.pointsIterator = points.values();
+		this.points = this.calculatePoints();
 	}
 
 	/**
@@ -68,16 +69,11 @@ export default class LissajousLoader {
 	}
 
 	public start(): void {
-		this.clear();
-
-		const initialPoint = this.pointsIterator.next().value;
 		const { colour = '000000' } = this.props;
 
-		this.context.beginPath();
 		this.context.lineCap = 'round';
 		this.context.strokeStyle = colour;
 		this.context.fillStyle = colour;
-		this.context.moveTo(initialPoint.x, initialPoint.y);
 
 		this.requestId = requestAnimationFrame(this.drawingStep)
 	}
@@ -96,16 +92,33 @@ export default class LissajousLoader {
 	}
 
 	private readonly drawingStep = (): void => {
-		const { done, value } = this.pointsIterator.next();
-		if (done) {
-			return;
+		if (this.currentPointIndex >= this.points.length) {
+			this.currentPointIndex = 0;
+			this.reverse = !this.reverse;
 		}
 
-		const { x, y } = value;
-		this.context.fillRect(x, y, 1.5, 1.5);
-		// this.context.lineTo(x, y);
+		this.clear();
+		this.context.beginPath();
+
+		if (this.reverse) {
+			this.context.moveTo(this.points[this.currentPointIndex].x, this.points[this.currentPointIndex].y);
+
+			for(let i = this.currentPointIndex + 1; i < this.points.length; i++) {
+				const { x, y } = this.points[i];
+				this.context.lineTo(x, y);
+			}
+		} else {
+			this.context.moveTo(this.points[0].x, this.points[0].y);
+
+			for(let i = 1; i <= this.currentPointIndex; i++) {
+				const { x, y } = this.points[i];
+				this.context.lineTo(x, y);
+			}
+		}
+
 		this.context.stroke();
 
+		this.currentPointIndex++;
 		this.requestId = requestAnimationFrame(this.drawingStep);
 	}
 }
