@@ -12,6 +12,7 @@ interface Props {
 	step?: number;
 	padding?: number;
 	colour?: string;
+	lineWidth?: number;
 }
 
 export default class LissajousLoader {
@@ -70,11 +71,12 @@ export default class LissajousLoader {
 	}
 
 	public start(): void {
-		const { colour = '000000' } = this.props;
+		const { colour = '000000', lineWidth = 1 } = this.props;
 
 		this.context.lineCap = 'round';
 		this.context.strokeStyle = colour;
 		this.context.fillStyle = colour;
+		this.context.lineWidth = lineWidth;
 
 		this.requestId = requestAnimationFrame(this.drawingStep);
 	}

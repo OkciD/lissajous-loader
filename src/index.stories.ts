@@ -19,6 +19,7 @@ export const main = () => {
 		step: number('Step', 0.05),
 		padding: number('Padding', 8),
 		colour: color('Colour', '000000'),
+		lineWidth: number('Line width', 1),
 	});
 	loader.start();
 
