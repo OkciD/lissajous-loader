@@ -56,7 +56,7 @@ describe('LissajousLoader', () => {
 
 		const context = canvas.getContext('2d')!;
 		context.moveTo(0, 0);
-		context.lineTo(20, 20);
+		context.lineTo(30, 30);
 		context.stroke();
 
 		expect(canvas).toMatchSnapshot();
