@@ -95,6 +95,12 @@ export default class LissajousLoader {
 		if (this.currentPointIndex >= this.points.length) {
 			this.currentPointIndex = 0;
 			this.reverse = !this.reverse;
+
+			setTimeout(() => {
+				this.requestId = requestAnimationFrame(this.drawingStep);
+			}, 1000);
+
+			return;
 		}
 
 		this.clear();
