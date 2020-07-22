@@ -16,8 +16,8 @@ export const main = () => {
 		xFrequency: number('X frequency', 3),
 		yFrequency: number('Y frequency', 2),
 		delta: Math.PI / number('Delta (PI/n), n = ', 2),
-		step: number('Step', 0.02),
-		padding: number('Padding', 16),
+		step: number('Step', 0.05),
+		padding: number('Padding', 8),
 		colour: color('Colour', '000000'),
 	});
 	loader.start();
