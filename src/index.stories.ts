@@ -7,6 +7,11 @@ export default {
 };
 
 export const main = () => {
+	const body = document.querySelector('body');
+	if (body) {
+		body.style.backgroundColor = color('Background colour', 'FFFFFF');
+	}
+
 	const canvas = document.createElement('canvas');
 	const canvasSize = number('Canvas size', 50);
 	canvas.width = canvasSize;
