@@ -12,11 +12,13 @@ let canvas: HTMLCanvasElement;
 const RAF_TIMEOUT = 16;
 const POINTS_COUNT = 125;
 const ITERATIONS_COUNT = POINTS_COUNT + 1;
+const PAUSE = 1000;
 const defaultProps: Props = {
 	xFrequency: 3,
 	yFrequency: 2,
 	delta: Math.PI / 2,
 	step: 2 * Math.PI / POINTS_COUNT,
+	pause: PAUSE,
 };
 
 jest.useFakeTimers();
@@ -48,6 +50,14 @@ describe('LissajousLoader', () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 		jest.advanceTimersByTime(ITERATIONS_COUNT * RAF_TIMEOUT);
+
+		expect(canvas).toMatchSnapshot();
+	});
+
+	it(`should clear a figure after 2 * ${ITERATIONS_COUNT} iterations (+ pause)`, () => {
+		const loader = new LissajousLoader(canvas, defaultProps);
+		loader.start();
+		jest.advanceTimersByTime(2 * ITERATIONS_COUNT * RAF_TIMEOUT + PAUSE);
 
 		expect(canvas).toMatchSnapshot();
 	});
