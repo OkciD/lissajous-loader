@@ -15,8 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
+    - name: Upd repos and packages
+      run: sudo apt-get update && sudo apt-get upgrade
+    
     - name: Install prerequisites for canvas package
-      run: sudo apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+      run: sudo apt-get install build-essential binutils libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
     
     - name: Install dependencies
       run: npm install
