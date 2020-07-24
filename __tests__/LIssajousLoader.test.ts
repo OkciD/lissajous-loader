@@ -11,6 +11,7 @@ let canvas: HTMLCanvasElement;
 
 const RAF_TIMEOUT = 16;
 const POINTS_COUNT = 125;
+const ITERATIONS_COUNT = POINTS_COUNT + 1;
 const defaultProps: Props = {
 	xFrequency: 3,
 	yFrequency: 2,
@@ -43,10 +44,10 @@ describe('LissajousLoader', () => {
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it(`should render the whole figure after ${POINTS_COUNT} iterations`, () => {
+	it(`should render the whole figure after ${ITERATIONS_COUNT} iterations`, () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
-		jest.advanceTimersByTime(POINTS_COUNT * RAF_TIMEOUT);
+		jest.advanceTimersByTime(ITERATIONS_COUNT * RAF_TIMEOUT);
 
 		expect(canvas).toMatchSnapshot();
 	});
