@@ -1,10 +1,22 @@
 // @ts-ignore
 import canvasSerializer from 'jest-canvas-snapshot-serializer';
+import LissajousLoader, { Props } from '../src';
 
 expect.addSnapshotSerializer(canvasSerializer);
 
 let requestAnimationFrameMock: jest.SpyInstance;
 let cancelAnimationFrameMock: jest.SpyInstance;
+
+let canvas: HTMLCanvasElement;
+
+const RAF_TIMEOUT = 16;
+const POINTS_COUNT = 125;
+const defaultProps: Props = {
+	xFrequency: 3,
+	yFrequency: 2,
+	delta: Math.PI / 2,
+	step: 2 * Math.PI / POINTS_COUNT,
+};
 
 jest.useFakeTimers();
 
@@ -19,45 +31,22 @@ describe('LissajousLoader', () => {
 			.mockImplementation((requestId: number) => {
 				return clearTimeout(requestId);
 			});
+
+		canvas = document.createElement('canvas');
+		canvas.width = 60;
+		canvas.height = 60;
 	});
 
-	it('raf test 1', () => {
-		let lol = 4
+	it('should render nothing without start() called', () => {
+		const loader = new LissajousLoader(canvas, defaultProps);
 
-		window.requestAnimationFrame(() => {
-			lol += 5;
-		});
-
-		jest.advanceTimersByTime(5);
-		expect(lol).toStrictEqual(4);
-
-		jest.advanceTimersByTime(20);
-		expect(lol).toStrictEqual(9);
+		expect(canvas).toMatchSnapshot();
 	});
 
-	it('raf test 2', () => {
-		let lol = 4
-
-		const requestId = window.requestAnimationFrame(() => {
-			lol += 5;
-		});
-		jest.advanceTimersByTime(5);
-		window.cancelAnimationFrame(requestId);
-
-		jest.runAllTimers();
-		expect(lol).toStrictEqual(4);
-	});
-
-	it('canvas test', () => {
-		const canvas = document.createElement('canvas');
-
-		canvas.width = 50;
-		canvas.height = 50;
-
-		const context = canvas.getContext('2d')!;
-		context.moveTo(0, 0);
-		context.lineTo(30, 30);
-		context.stroke();
+	it(`should render the whole figure after ${POINTS_COUNT} iterations`, () => {
+		const loader = new LissajousLoader(canvas, defaultProps);
+		loader.start();
+		jest.advanceTimersByTime(POINTS_COUNT * RAF_TIMEOUT);
 
 		expect(canvas).toMatchSnapshot();
 	});

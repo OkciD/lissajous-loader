@@ -5,7 +5,7 @@ interface Point {
 	y: number;
 }
 
-interface Props {
+export interface Props {
 	xFrequency: number;
 	yFrequency: number;
 	delta: number;
