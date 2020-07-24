@@ -13,6 +13,7 @@ export interface Props {
 	padding?: number;
 	colour?: string;
 	lineWidth?: number;
+	pause?: number;
 }
 
 export default class LissajousLoader {
@@ -95,13 +96,15 @@ export default class LissajousLoader {
 	}
 
 	private readonly drawingStep = (): void => {
+		const { pause = 1000 } = this.props;
+
 		if (this.currentPointIndex >= this.points.length) {
 			this.currentPointIndex = 0;
 			this.reverse = !this.reverse;
 
 			setTimeout(() => {
 				this.requestId = requestAnimationFrame(this.drawingStep);
-			}, 1000);
+			}, pause);
 
 			return;
 		}
