@@ -40,4 +40,13 @@ describe('Range helper', () => {
 		const actual: number[] = range(0.01, 0.05, 0.1);
 		expect(actual).toStrictEqual([0.01]);
 	});
+
+	it('should generate predictable amount of numbers', () => {
+		const from = 1;
+		const to = 2 * Math.PI;
+		const step = 0.05;
+		const actual: number[] = range(from, to, step);
+
+		expect(actual).toHaveLength(Math.ceil((to - from) / step));
+	});
 });
