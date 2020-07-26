@@ -22,8 +22,6 @@ const defaultProps: Props = {
 	pause: PAUSE,
 };
 
-jest.useFakeTimers();
-
 describe('LissajousLoader', () => {
 	beforeEach(() => {
 		requestAnimationFrameMock = jest.spyOn(window, 'requestAnimationFrame')
@@ -35,6 +33,8 @@ describe('LissajousLoader', () => {
 			.mockImplementation((requestId: number) => {
 				return clearTimeout(requestId);
 			});
+
+		jest.useFakeTimers();
 
 		canvas = document.createElement('canvas');
 		canvas.width = 60;
