@@ -11,8 +11,8 @@ let canvas: HTMLCanvasElement;
 
 const RAF_TIMEOUT = 16;
 const POINTS_COUNT = 125;
-const ITERATIONS_COUNT = POINTS_COUNT + 1;
-const FULL_CYCLE_ITERATIONS_COUNT = 2 * ITERATIONS_COUNT + 1;
+const DRAWING_ITERATIONS_COUNT = POINTS_COUNT + 1;
+const FULL_CYCLE_ITERATIONS_COUNT = 2 * DRAWING_ITERATIONS_COUNT + 1;
 const PAUSE = 1000;
 const defaultProps: Props = {
 	xFrequency: 3,
@@ -42,21 +42,21 @@ describe('LissajousLoader', () => {
 	});
 
 	it('should render nothing without start() called', () => {
-		const loader = new LissajousLoader(canvas, defaultProps);
+		new LissajousLoader(canvas, defaultProps);
 
 		jest.runAllTimers();
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it(`should render the whole figure after ${ITERATIONS_COUNT} iterations`, () => {
+	it(`should render the whole figure after half a cycle`, () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
-		jest.advanceTimersByTime(ITERATIONS_COUNT * RAF_TIMEOUT);
+		jest.advanceTimersByTime(DRAWING_ITERATIONS_COUNT * RAF_TIMEOUT);
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it(`should clear a figure after ${FULL_CYCLE_ITERATIONS_COUNT} iterations (+ pause)`, () => {
+	it(`should clear a figure after full cycle (+ pause)`, () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
@@ -64,11 +64,11 @@ describe('LissajousLoader', () => {
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it.skip(`should wait for ${PAUSE}ms when rendered the whole figure`, () => {
+	it.skip(`should take a pause when rendered the whole figure`, () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
-		jest.advanceTimersByTime(ITERATIONS_COUNT * RAF_TIMEOUT);
+		jest.advanceTimersByTime(DRAWING_ITERATIONS_COUNT * RAF_TIMEOUT);
 		// expect(canvas).toMatchSnapshot();
 
 		requestAnimationFrameMock.mockReset();
