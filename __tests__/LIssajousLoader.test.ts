@@ -55,7 +55,7 @@ describe('LissajousLoader', () => {
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it(`should render the whole figure after half a cycle`, () => {
+	it('should render the whole figure after half a cycle', () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
@@ -63,7 +63,7 @@ describe('LissajousLoader', () => {
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it(`should clear a figure after full cycle (+ pause)`, () => {
+	it('should clear a figure after full cycle (+ pause)', () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
@@ -71,7 +71,7 @@ describe('LissajousLoader', () => {
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it.skip(`should take a pause when rendered the whole figure`, () => {
+	it.skip('should take a pause when rendered the whole figure', () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
