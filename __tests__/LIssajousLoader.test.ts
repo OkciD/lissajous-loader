@@ -23,7 +23,7 @@ const defaultProps: Props = {
 };
 
 describe('LissajousLoader', () => {
-	beforeEach(() => {
+	beforeAll(() => {
 		requestAnimationFrameMock = jest.spyOn(window, 'requestAnimationFrame')
 			.mockImplementation((callback: FrameRequestCallback) => {
 				return setTimeout(callback, 16);
@@ -33,7 +33,9 @@ describe('LissajousLoader', () => {
 			.mockImplementation((requestId: number) => {
 				return clearTimeout(requestId);
 			});
+	});
 
+	beforeEach(() => {
 		jest.useFakeTimers();
 
 		canvas = document.createElement('canvas');
@@ -86,7 +88,7 @@ describe('LissajousLoader', () => {
 	});
 
 	afterEach(() => {
-		requestAnimationFrameMock.mockRestore();
-		cancelAnimationFrameMock.mockRestore();
+		requestAnimationFrameMock.mockClear();
+		cancelAnimationFrameMock.mockClear();
 	});
 });
