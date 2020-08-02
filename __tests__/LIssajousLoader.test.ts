@@ -43,6 +43,11 @@ describe('LissajousLoader', () => {
 		canvas.height = 60;
 	});
 
+	afterEach(() => {
+		requestAnimationFrameMock.mockClear();
+		cancelAnimationFrameMock.mockClear();
+	});
+
 	it('should render nothing without start() called', () => {
 		new LissajousLoader(canvas, defaultProps);
 
@@ -85,10 +90,5 @@ describe('LissajousLoader', () => {
 		jest.advanceTimersByTime(10 * RAF_TIMEOUT);
 
 		expect(canvas).toMatchSnapshot();
-	});
-
-	afterEach(() => {
-		requestAnimationFrameMock.mockClear();
-		cancelAnimationFrameMock.mockClear();
 	});
 });
