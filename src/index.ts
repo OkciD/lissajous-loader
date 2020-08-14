@@ -116,7 +116,7 @@ export default class LissajousLoader {
 			const initialPoint = this.points[this.currentPointIndex];
 			this.context.moveTo(initialPoint.x, initialPoint.y);
 
-			for(let i = this.currentPointIndex + 1; i < this.points.length; i++) {
+			for (let i = this.currentPointIndex + 1; i < this.points.length; i++) {
 				const { x, y } = this.points[i];
 				this.context.lineTo(x, y);
 			}
@@ -124,7 +124,7 @@ export default class LissajousLoader {
 			const initialPoint = this.points[0];
 			this.context.moveTo(initialPoint.x, initialPoint.y);
 
-			for(let i = 1; i <= this.currentPointIndex; i++) {
+			for (let i = 1; i <= this.currentPointIndex; i++) {
 				const { x, y } = this.points[i];
 				this.context.lineTo(x, y);
 			}
