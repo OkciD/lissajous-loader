@@ -30,12 +30,14 @@ describe('LissajousLoader', () => {
 		requestAnimationFrameMock = jest.spyOn(window, 'requestAnimationFrame')
 			.mockImplementation((callback: FrameRequestCallback) => {
 				return setTimeout(callback, RAF_TIMEOUT);
-			});
+			})
+			.mockName('RAF mock');
 
 		cancelAnimationFrameMock = jest.spyOn(window, 'cancelAnimationFrame')
 			.mockImplementation((requestId: number) => {
 				return clearTimeout(requestId);
-			});
+			})
+			.mockName('CAF mock');
 	});
 
 	beforeEach(() => {
