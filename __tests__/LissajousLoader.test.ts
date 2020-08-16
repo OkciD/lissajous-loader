@@ -71,14 +71,13 @@ describe('LissajousLoader', () => {
 		expect(canvas).toMatchSnapshot();
 	});
 
-	it.skip('should take a pause when rendered the whole figure', () => {
+	it('should take a pause when rendered the whole figure', () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
 		jest.advanceTimersByTime(DRAWING_ITERATIONS_COUNT * RAF_TIMEOUT);
-		// expect(canvas).toMatchSnapshot();
 
-		requestAnimationFrameMock.mockReset();
+		requestAnimationFrameMock.mockClear();
 		expect(requestAnimationFrameMock).not.toBeCalled();
 
 		jest.advanceTimersByTime(PAUSE);
@@ -86,9 +85,5 @@ describe('LissajousLoader', () => {
 
 		jest.advanceTimersByTime(RAF_TIMEOUT);
 		expect(requestAnimationFrameMock).toBeCalledTimes(1);
-
-		jest.advanceTimersByTime(10 * RAF_TIMEOUT);
-
-		expect(canvas).toMatchSnapshot();
 	});
 });
