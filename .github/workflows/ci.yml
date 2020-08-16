@@ -22,8 +22,9 @@ jobs:
 #      run: sudo apt-get install build-essential libc6-udeb binutils libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
     - name: Install dependencies
-      run: npm install
+      run: npm ci
 
     - uses: iCrawl/action-tsc@v1
 
-#    - uses: stefanoeb/jest-action@1.0.4
+#    - name: Run tests
+#      run: npm test -- --ci
