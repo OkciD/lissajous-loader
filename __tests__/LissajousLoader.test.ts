@@ -10,10 +10,13 @@ let cancelAnimationFrameMock: jest.SpyInstance;
 let canvas: HTMLCanvasElement;
 
 const RAF_TIMEOUT = 16;
+
 const POINTS_COUNT = 125;
 const DRAWING_ITERATIONS_COUNT = POINTS_COUNT + 1;
 const FULL_CYCLE_ITERATIONS_COUNT = 2 * DRAWING_ITERATIONS_COUNT + 1;
+
 const PAUSE = 1000;
+
 const defaultProps: Props = {
 	xFrequency: 3,
 	yFrequency: 2,
@@ -26,7 +29,7 @@ describe('LissajousLoader', () => {
 	beforeAll(() => {
 		requestAnimationFrameMock = jest.spyOn(window, 'requestAnimationFrame')
 			.mockImplementation((callback: FrameRequestCallback) => {
-				return setTimeout(callback, 16);
+				return setTimeout(callback, RAF_TIMEOUT);
 			});
 
 		cancelAnimationFrameMock = jest.spyOn(window, 'cancelAnimationFrame')
