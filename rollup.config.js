@@ -4,7 +4,7 @@ import { terser } from 'rollup-plugin-terser';
 export default {
 	input: 'src/index.ts',
 	output: {
-		file: 'lissajous-loader.js',
+		file: 'dist/lissajous-loader.js',
 		name: 'lissajous-loader',
 		format: 'umd'
 	},
