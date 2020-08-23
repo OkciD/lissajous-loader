@@ -49,6 +49,8 @@ describe('LissajousLoader', () => {
 	});
 
 	afterEach(() => {
+		jest.clearAllTimers();
+
 		requestAnimationFrameMock.mockClear();
 		cancelAnimationFrameMock.mockClear();
 	});
