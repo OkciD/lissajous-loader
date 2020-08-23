@@ -9,7 +9,9 @@ export default {
 		format: 'umd'
 	},
 	plugins: [
-		typescript(),
+		typescript({
+			tsconfig: "tsconfig.prod.json",
+		}),
 		terser({
 			format: {
 				comments: false
