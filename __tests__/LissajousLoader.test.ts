@@ -93,4 +93,17 @@ describe('LissajousLoader', () => {
 		jest.advanceTimersByTime(RAF_TIMEOUT);
 		expect(requestAnimationFrameMock).toBeCalledTimes(1);
 	});
+
+	it('should stop when called the stop() method', () => {
+		const loader = new LissajousLoader(canvas, defaultProps);
+		loader.start();
+
+		jest.advanceTimersByTime(20 * RAF_TIMEOUT);
+		loader.stop();
+
+		requestAnimationFrameMock.mockClear();
+
+		jest.advanceTimersByTime(10 * RAF_TIMEOUT);
+		expect(requestAnimationFrameMock).not.toBeCalled();
+	});
 });
