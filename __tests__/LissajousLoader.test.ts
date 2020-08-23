@@ -106,4 +106,12 @@ describe('LissajousLoader', () => {
 		jest.advanceTimersByTime(10 * RAF_TIMEOUT);
 		expect(requestAnimationFrameMock).not.toBeCalled();
 	});
+
+	it('should throw an exception when its unable to get canvas drawing context', () => {
+		jest.spyOn(canvas, 'getContext').mockReturnValue(null);
+
+		expect(() => {
+			new LissajousLoader(canvas, defaultProps)
+		}).toThrowError();
+	});
 });
