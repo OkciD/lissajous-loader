@@ -22,7 +22,8 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - uses: iCrawl/action-tsc@v1
-
     - name: Run tests
       run: npm test -- --ci
+
+    - name: Try to build
+      run: npm run build
