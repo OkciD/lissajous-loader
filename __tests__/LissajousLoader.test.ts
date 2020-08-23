@@ -100,6 +100,7 @@ describe('LissajousLoader', () => {
 
 		jest.advanceTimersByTime(20 * RAF_TIMEOUT);
 		loader.stop();
+		expect(cancelAnimationFrameMock).toBeCalled();
 
 		requestAnimationFrameMock.mockClear();
 
@@ -113,5 +114,26 @@ describe('LissajousLoader', () => {
 		expect(() => {
 			new LissajousLoader(canvas, defaultProps)
 		}).toThrowError();
+	});
+
+	it('should do nothing when stop() id called without start()', () => {
+		const loader = new LissajousLoader(canvas, defaultProps);
+		loader.stop();
+
+		expect(requestAnimationFrameMock).not.toBeCalled();
+		expect(cancelAnimationFrameMock).not.toBeCalled();
+	});
+
+	it('should clear the canvas before start', () => {
+		const context = canvas.getContext('2d');
+		context!.moveTo(0, 0);
+		context!.lineTo(20, 20);
+		context!.stroke();
+
+		const loader = new LissajousLoader(canvas, defaultProps);
+		loader.start();
+
+		jest.advanceTimersByTime(DRAWING_ITERATIONS_COUNT * RAF_TIMEOUT);
+		expect(canvas).toMatchSnapshot();
 	});
 });
