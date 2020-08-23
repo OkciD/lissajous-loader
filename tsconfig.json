@@ -6,12 +6,12 @@
       "DOM",
       "ES2019"
     ],
-    "moduleResolution": "node",
     "strict": true,
-    "target": "ES2019",
+    "target": "ES5",
     "module": "ES6",
     "skipLibCheck": true,
-    "sourceMap": true
+    "sourceMap": false,
+    "declaration": true
   },
   "exclude": ["node_modules"]
 }
