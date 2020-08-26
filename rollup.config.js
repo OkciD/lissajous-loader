@@ -1,4 +1,4 @@
-import typescript from 'rollup-plugin-typescript2';
+import ts from "@wessberg/rollup-plugin-ts";
 import { terser } from 'rollup-plugin-terser';
 import clear from 'rollup-plugin-clear';
 
@@ -13,7 +13,7 @@ export default {
 		clear({
 			targets: ['dist'],
 		}),
-		typescript({
+		ts({
 			tsconfig: "tsconfig.prod.json",
 		}),
 		terser({
