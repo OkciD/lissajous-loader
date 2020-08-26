@@ -1,6 +1,6 @@
 {
   "name": "lissajous-loader",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A loader for your site which draws Lissajous curves",
   "keywords": [
     "loader",
@@ -11,12 +11,16 @@
   "scripts": {
     "start": "start-storybook",
     "test": "jest --coverage",
-    "build": "rollup -c rollup.config.js"
+    "build": "rollup -c rollup.config.js",
+    "prepublishOnly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OkciD/lissajous-loader.git"
   },
+  "files": [
+    "dist/*"
+  ],
   "author": "Yury Baykov",
   "license": "ISC",
   "bugs": {
