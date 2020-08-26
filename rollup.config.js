@@ -7,7 +7,8 @@ export default {
 	output: {
 		file: 'dist/lissajous-loader.js',
 		name: 'lissajous-loader',
-		format: 'umd'
+		format: 'umd',
+		sourcemap: true,
 	},
 	plugins: [
 		clear({

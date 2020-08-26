@@ -8,6 +8,7 @@
     "lissajous curves"
   ],
   "main": "dist/lissajous-loader.js",
+  "types": "dist/lissajous-loader.d.ts",
   "scripts": {
     "start": "start-storybook",
     "test": "jest --coverage",
