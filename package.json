@@ -1,6 +1,6 @@
 {
   "name": "lissajous-loader",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A loader for your site which draws Lissajous curves",
   "keywords": [
     "loader",
