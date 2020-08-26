@@ -1,1 +1,1 @@
-# lissajous-loader
+# @okcid/lissajous-loader
