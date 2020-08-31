@@ -40,3 +40,17 @@ callApi()
         loader.stop();
     });
 ```
+
+## API
+
+### constructor
+```javascript
+new LissajousLoader(canvas, props);
+```
+* `canvas` &ndash; instance of `HTMLCanvasElement` to draw the loader on;  
+    _Note:_ canvas is recommended to be square (`height` property should equal the `width` property)
+* `props` &ndash; an object with loader props  
+    <img src="https://latex.codecogs.com/gif.latex?\inline&space;\begin{equation*}&space;\begin{cases}&space;x&space;=&space;A&space;\sin(\alpha&space;t&space;&plus;&space;\delta);&space;\\&space;y&space;=&space;B&space;\sin(\beta&space;t)&space;\end{cases}&space;\end{equation*}" title="\begin{equation*} \begin{cases} x = A \sin(\alpha t + \delta); \\ y = B \sin(\beta t) \end{cases} \end{equation*}" />
+    * `xFrequency` &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" />
+    * `yFrequency` &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\beta" title="\beta" />
+    * `delta` &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta" title="\delta" />
