@@ -55,13 +55,14 @@ new LissajousLoader(canvas, props);
   
     _Note:_ **A** and **B** are both considered equal to 1 for simplicity  
     _Note:_ ❗ means required prop, ❓ &ndash; optional prop
-
-    * ❗`xFrequency` (number) &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" />;
-    * ❗`yFrequency` (number) &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\beta" title="\beta" />;
-    * ❗`delta` (number) &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta" title="\delta" />, it is better to be a fraction of Pi (e.g. Pi/2, Pi/6, etc);
-    * ❓`step` (number, default = `0.05`) &ndash; a step for **t** param &ndash; the less it is, the more accurate the curve is;
-    * ❓`padding` (number, default = `16`) &ndash; padding inside canvas element;
-    * ❓`colour` (string, default = `000000`) &ndash; HEX code of lines colour;
-    * ❓`lineWidth` (number, default = `1`) &ndash; the width of the curve's line;
-    * ❓`pause` (number, default = `1000`) &ndash; the time to wait before erasing the curve.
     
+    | | Name | Type | Default | Description |
+    | ---- | ---- | ---- | ---- | ---- |
+    ❗ | `xFrequency`    | number |          | <img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" />
+    ❗ | `yFrequency`    | number |          | <img src="https://latex.codecogs.com/gif.latex?\inline&space;\beta" title="\beta" />
+    ❗ | `delta`         | number |          | <img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta" title="\delta" />, it is better to be a fraction of Pi (e.g. Pi/2, Pi/6, etc)
+    ❓ | `step`          | number | 0.05     | A step for **t** param &ndash; the less it is, the more accurate the curve is
+    ❓ | `padding`       | number | 16       | padding inside canvas element
+    ❓ | `colour`        | string | 000000   | HEX code of lines colour
+    ❓ | `lineWidth`     | number | 1        | the width of the curve's line
+    ❓ | `pause`         | number | 1000     | the time to wait before erasing the curve
