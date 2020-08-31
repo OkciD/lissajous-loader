@@ -10,3 +10,33 @@
     @okcid:registry=https://npm.pkg.github.com
     ```
 3. `npm i @okcid/lissajous-loader`
+
+## Example
+HTML:
+```html
+<html>
+    <head>
+    </head>
+    <body>
+        <canvas id="loader" width="50" height="50" />
+    </body>
+</html>
+```
+Javascript:
+```javascript
+import LissajousLoader from 'lissajous-loader';
+
+const canvas = document.getElementById('loader');
+
+const loader = new LissajousLoader(canvas, {
+    xFrequency: 3,
+    yFrequency: 2,
+    delta: Math.PI / 2,
+});
+loader.start();
+
+callApi()
+    .then(() => {
+        loader.stop();
+    });
+```
