@@ -49,8 +49,19 @@ new LissajousLoader(canvas, props);
 ```
 * `canvas` &ndash; instance of `HTMLCanvasElement` to draw the loader on;  
     _Note:_ canvas is recommended to be square (`height` property should equal the `width` property)
-* `props` &ndash; an object with loader props  
+* `props` &ndash; an object with loader props
+  
     <img src="https://latex.codecogs.com/gif.latex?\inline&space;\begin{equation*}&space;\begin{cases}&space;x&space;=&space;A&space;\sin(\alpha&space;t&space;&plus;&space;\delta);&space;\\&space;y&space;=&space;B&space;\sin(\beta&space;t)&space;\end{cases}&space;\end{equation*}" title="\begin{equation*} \begin{cases} x = A \sin(\alpha t + \delta); \\ y = B \sin(\beta t) \end{cases} \end{equation*}" />
-    * `xFrequency` &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" />
-    * `yFrequency` &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\beta" title="\beta" />
-    * `delta` &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta" title="\delta" />
+  
+    _Note:_ **A** and **B** are both considered equal to 1 for simplicity  
+    _Note:_ ❗ means required prop, ❓ &ndash; optional prop
+
+    * ❗`xFrequency` (number) &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\alpha" title="\alpha" />;
+    * ❗`yFrequency` (number) &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\beta" title="\beta" />;
+    * ❗`delta` (number) &ndash; <img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta" title="\delta" />, it is better to be a fraction of Pi (e.g. Pi/2, Pi/6, etc);
+    * ❓`step` (number, default = `0.05`) &ndash; a step for **t** param &ndash; the less it is, the more accurate the curve is;
+    * ❓`padding` (number, default = `16`) &ndash; padding inside canvas element;
+    * ❓`colour` (string, default = `000000`) &ndash; HEX code of lines colour;
+    * ❓`lineWidth` (number, default = `1`) &ndash; the width of the curve's line;
+    * ❓`pause` (number, default = `1000`) &ndash; the time to wait before erasing the curve.
+    
