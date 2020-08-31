@@ -62,7 +62,7 @@ new LissajousLoader(canvas, props);
     ❗ | `yFrequency`    | number |          | <img src="https://latex.codecogs.com/gif.latex?\inline&space;\beta" title="\beta" />
     ❗ | `delta`         | number |          | <img src="https://latex.codecogs.com/gif.latex?\inline&space;\delta" title="\delta" />, it is better to be a fraction of Pi (e.g. Pi/2, Pi/6, etc)
     ❓ | `step`          | number | 0.05     | A step for **t** param &ndash; the less it is, the more accurate the curve is
-    ❓ | `padding`       | number | 16       | padding inside canvas element
+    ❓ | `padding`       | number | 16       | Padding inside canvas element
     ❓ | `colour`        | string | 000000   | HEX code of lines colour
-    ❓ | `lineWidth`     | number | 1        | the width of the curve's line
-    ❓ | `pause`         | number | 1000     | the time to wait before erasing the curve
+    ❓ | `lineWidth`     | number | 1        | The width of the curve's line
+    ❓ | `pause`         | number | 1000     | The time to wait before erasing the curve
