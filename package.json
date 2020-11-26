@@ -1,6 +1,6 @@
 {
   "name": "@okcid/lissajous-loader",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A loader for your site that draws Lissajous curves",
   "keywords": [
     "loader",
