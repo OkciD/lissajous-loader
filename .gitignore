@@ -95,3 +95,5 @@ dist
 out
 
 .vscode
+
+*storybook.log
