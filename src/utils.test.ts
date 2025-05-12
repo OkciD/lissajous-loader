@@ -1,7 +1,7 @@
-import {toBeDeepCloseTo,toMatchCloseTo} from 'jest-matcher-deep-close-to';
+import {toBeDeepCloseTo, toMatchCloseTo} from 'jest-matcher-deep-close-to';
 expect.extend({toBeDeepCloseTo, toMatchCloseTo});
 
-import { range } from '../src/utils';
+import { range } from './utils';
 
 describe('Range helper', () => {
 	it('should work with integer boundaries and step = 1', () => {
