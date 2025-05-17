@@ -11,12 +11,12 @@ export default {
 	},
 	plugins: [
 		typescript({
-			tsconfig: "tsconfig.prod.json",
+			tsconfig: 'tsconfig.prod.json',
 		}),
 		terser({
 			format: {
-				comments: false
-			}
+				comments: false,
+			},
 		}),
-	]
+	],
 };

@@ -1,4 +1,4 @@
-import LissajousLoader, { Props } from '../src';
+import LissajousLoader, {Props} from '../src';
 
 let requestAnimationFrameMock: jest.SpyInstance;
 let cancelAnimationFrameMock: jest.SpyInstance;
@@ -9,7 +9,7 @@ const RAF_TIMEOUT = 16;
 
 const STEP = 0.05;
 
-const pointsCount = Math.round(2 * Math.PI / STEP);
+const pointsCount = Math.round((2 * Math.PI) / STEP);
 const DRAWING_ITERATIONS_COUNT = pointsCount + 1;
 const FULL_CYCLE_ITERATIONS_COUNT = 2 * DRAWING_ITERATIONS_COUNT + 1;
 
@@ -28,13 +28,15 @@ const defaultProps: Props = {
  */
 describe('LissajousLoader', () => {
 	beforeAll(() => {
-		requestAnimationFrameMock = jest.spyOn(window, 'requestAnimationFrame')
+		requestAnimationFrameMock = jest
+			.spyOn(window, 'requestAnimationFrame')
 			.mockImplementation((callback: FrameRequestCallback) => {
 				return setTimeout(callback, RAF_TIMEOUT);
 			})
 			.mockName('RAF mock');
 
-		cancelAnimationFrameMock = jest.spyOn(window, 'cancelAnimationFrame')
+		cancelAnimationFrameMock = jest
+			.spyOn(window, 'cancelAnimationFrame')
 			.mockImplementation((requestId: number) => {
 				return clearTimeout(requestId);
 			})
@@ -61,7 +63,7 @@ describe('LissajousLoader', () => {
 
 		jest.runAllTimers();
 		// @ts-ignore
-        expect(loader.context.__getEvents()).toMatchSnapshot();
+		expect(loader.context.__getEvents()).toMatchSnapshot();
 	});
 
 	it('should render the whole figure after half a cycle', () => {
@@ -70,16 +72,18 @@ describe('LissajousLoader', () => {
 
 		jest.advanceTimersByTime(DRAWING_ITERATIONS_COUNT * RAF_TIMEOUT);
 		// @ts-ignore
-        expect(loader.context.__getEvents()).toMatchSnapshot();
+		expect(loader.context.__getEvents()).toMatchSnapshot();
 	});
 
 	it('should clear a figure after full cycle (+ pause)', () => {
 		const loader = new LissajousLoader(canvas, defaultProps);
 		loader.start();
 
-		jest.advanceTimersByTime(FULL_CYCLE_ITERATIONS_COUNT * RAF_TIMEOUT + PAUSE);
+		jest.advanceTimersByTime(
+			FULL_CYCLE_ITERATIONS_COUNT * RAF_TIMEOUT + PAUSE
+		);
 		// @ts-ignore
-        expect(loader.context.__getEvents()).toMatchSnapshot();
+		expect(loader.context.__getEvents()).toMatchSnapshot();
 	});
 
 	it.failing('should take a pause when rendered the whole figure', () => {
@@ -116,17 +120,20 @@ describe('LissajousLoader', () => {
 		jest.spyOn(canvas, 'getContext').mockReturnValue(null);
 
 		expect(() => {
-			new LissajousLoader(canvas, defaultProps)
+			new LissajousLoader(canvas, defaultProps);
 		}).toThrow();
 	});
 
-	it.failing('should do nothing when stop() id called without start()', () => {
-		const loader = new LissajousLoader(canvas, defaultProps);
-		loader.stop();
+	it.failing(
+		'should do nothing when stop() id called without start()',
+		() => {
+			const loader = new LissajousLoader(canvas, defaultProps);
+			loader.stop();
 
-		expect(requestAnimationFrameMock).not.toHaveBeenCalled();
-		expect(cancelAnimationFrameMock).not.toHaveBeenCalled();
-	});
+			expect(requestAnimationFrameMock).not.toHaveBeenCalled();
+			expect(cancelAnimationFrameMock).not.toHaveBeenCalled();
+		}
+	);
 
 	it.failing('should clear the canvas before start', () => {
 		const context = canvas.getContext('2d');
@@ -139,6 +146,6 @@ describe('LissajousLoader', () => {
 
 		jest.advanceTimersByTime(DRAWING_ITERATIONS_COUNT * RAF_TIMEOUT);
 		// @ts-ignore
-        expect(loader.context.__getEvents()).toMatchSnapshot();
+		expect(loader.context.__getEvents()).toMatchSnapshot();
 	});
 });

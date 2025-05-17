@@ -1,54 +1,56 @@
 {
-  "name": "@okcid/lissajous-loader",
-  "version": "0.0.5",
-  "description": "A loader for your site that draws Lissajous curves",
-  "keywords": [
-    "loader",
-    "lissajous",
-    "lissajous curves"
-  ],
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "start": "npm run storybook",
-    "test": "jest --coverage",
-    "build": "rm -rf dist && npx tsc",
-    "prepublishOnly": "npm test && npm run build",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/OkciD/lissajous-loader.git"
-  },
-  "files": [
-    "dist/*"
-  ],
-  "author": "Yury Baykov",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/OkciD/lissajous-loader/issues"
-  },
-  "homepage": "https://github.com/OkciD/lissajous-loader#readme",
-  "devDependencies": {
-    "@storybook/addon-essentials": "8.6.12",
-    "@storybook/blocks": "8.6.12",
-    "@storybook/html": "8.6.12",
-    "@storybook/html-vite": "8.6.12",
-    "@storybook/test": "8.6.12",
-    "@types/jest": "29.5.14",
-    "canvas": "3.1.0",
-    "jest": "29.7.0",
-    "jest-canvas-mock": "2.5.2",
-    "jest-environment-jsdom": "29.7.0",
-    "jest-matcher-deep-close-to": "3.0.2",
-    "storybook": "8.6.12",
-    "ts-jest": "29.3.2",
-    "ts-node": "10.9.2",
-    "typescript": "5.8.3"
-  }
+	"name": "@okcid/lissajous-loader",
+	"version": "0.0.5",
+	"description": "A loader for your site that draws Lissajous curves",
+	"keywords": [
+		"loader",
+		"lissajous",
+		"lissajous curves"
+	],
+	"type": "module",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"start": "npm run storybook",
+		"test": "jest --coverage",
+		"build": "rm -rf dist && npx tsc",
+		"prepublishOnly": "npm test && npm run build",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build",
+		"format": "npx prettier . --write"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/OkciD/lissajous-loader.git"
+	},
+	"files": [
+		"dist/*"
+	],
+	"author": "Yury Baykov",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/OkciD/lissajous-loader/issues"
+	},
+	"homepage": "https://github.com/OkciD/lissajous-loader#readme",
+	"devDependencies": {
+		"@storybook/addon-essentials": "8.6.12",
+		"@storybook/blocks": "8.6.12",
+		"@storybook/html": "8.6.12",
+		"@storybook/html-vite": "8.6.12",
+		"@storybook/test": "8.6.12",
+		"@types/jest": "29.5.14",
+		"canvas": "3.1.0",
+		"jest": "29.7.0",
+		"jest-canvas-mock": "2.5.2",
+		"jest-environment-jsdom": "29.7.0",
+		"jest-matcher-deep-close-to": "3.0.2",
+		"prettier": "3.5.3",
+		"storybook": "8.6.12",
+		"ts-jest": "29.3.2",
+		"ts-node": "10.9.2",
+		"typescript": "5.8.3"
+	}
 }
