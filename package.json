@@ -13,11 +13,13 @@
 	"scripts": {
 		"start": "npm run storybook",
 		"test": "jest --coverage",
+		"test:ci": "npm test -- --ci",
 		"build": "rm -rf dist && npx tsc",
 		"prepublishOnly": "npm test && npm run build",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
-		"format": "npx prettier . --write"
+		"format": "npx prettier . --write",
+		"format:ci": "npx prettier . --check"
 	},
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/"
