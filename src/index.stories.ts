@@ -1,32 +1,52 @@
-import { withKnobs, number, color } from '@storybook/addon-knobs';
-import LissajousLoader from './index';
+import type {Meta, StoryObj} from '@storybook/html';
+import {default as LissajousLoader, type Props} from './index';
 
-export default {
-	title: 'LissajousLoader',
-	decorators: [withKnobs]
+type Args = Pick<Props, 'xFrequency' | 'yFrequency' | 'colour'> & {
+	deltaPiDivider: number;
+	canvasSize: number;
 };
 
-export const main = () => {
-	const body = document.querySelector('body');
-	if (body) {
-		body.style.backgroundColor = color('Background colour', 'FFFFFF');
-	}
+const meta: Meta<Args> = {
+	title: 'LissajousLoader',
+};
 
-	const canvas = document.createElement('canvas');
-	const canvasSize = number('Canvas size', 50);
-	canvas.width = canvasSize;
-	canvas.height = canvasSize;
+export default meta;
+type Story = StoryObj<Args>;
 
-	const loader = new LissajousLoader(canvas, {
-		xFrequency: number('X frequency', 3),
-		yFrequency: number('Y frequency', 2),
-		delta: Math.PI / number('Delta (PI/n), n = ', 2),
-		step: number('Step', 0.05),
-		padding: number('Padding', 8),
-		colour: color('Colour', '000000'),
-		lineWidth: number('Line width', 1),
-	});
-	loader.start();
+export const Index: Story = {
+	render: ({canvasSize, xFrequency, yFrequency, deltaPiDivider, colour}) => {
+		const canvas = document.createElement('canvas');
+		canvas.width = canvasSize;
+		canvas.height = canvasSize;
 
-	return canvas;
+		const loader = new LissajousLoader(canvas, {
+			xFrequency,
+			yFrequency,
+			delta: Math.PI / deltaPiDivider,
+			colour,
+		});
+
+		loader.start();
+
+		return canvas;
+	},
+	args: {
+		xFrequency: 3,
+		yFrequency: 2,
+		deltaPiDivider: 2,
+		colour: '#0077ff',
+		canvasSize: 64,
+	},
+	argTypes: {
+		canvasSize: {control: {type: 'number', min: 16}},
+		xFrequency: {control: {type: 'number'}},
+		yFrequency: {control: {type: 'number'}},
+		deltaPiDivider: {control: {type: 'number', min: 0}},
+		colour: {
+			control: {
+				type: 'color',
+				presetColors: ['black', 'white', '#BADA55'],
+			},
+		},
+	},
 };

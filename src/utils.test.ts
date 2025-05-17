@@ -1,7 +1,7 @@
-import {toBeDeepCloseTo,toMatchCloseTo} from 'jest-matcher-deep-close-to';
+import {toBeDeepCloseTo, toMatchCloseTo} from 'jest-matcher-deep-close-to';
 expect.extend({toBeDeepCloseTo, toMatchCloseTo});
 
-import { range } from '../src/utils';
+import {range} from './utils';
 
 describe('Range helper', () => {
 	it('should work with integer boundaries and step = 1', () => {
@@ -33,7 +33,9 @@ describe('Range helper', () => {
 		const actual: number[] = range(0.1, 0.9, 0.1);
 
 		// @ts-ignore
-		expect(actual).toBeDeepCloseTo([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]);
+		expect(actual).toBeDeepCloseTo([
+			0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
+		]);
 	});
 
 	it('should work with float boundaries and float step that overflows the upper boundary', () => {

@@ -1,6 +1,5 @@
-import ts from "@wessberg/rollup-plugin-ts";
-import { terser } from 'rollup-plugin-terser';
-import clear from 'rollup-plugin-clear';
+import typescript from '@rollup/plugin-typescript';
+import terser from '@rollup/plugin-terser';
 
 export default {
 	input: 'src/index.ts',
@@ -8,19 +7,16 @@ export default {
 		file: 'dist/lissajous-loader.js',
 		name: 'lissajous-loader',
 		format: 'umd',
-		sourcemap: true,
+		sourcemap: false,
 	},
 	plugins: [
-		clear({
-			targets: ['dist'],
-		}),
-		ts({
-			tsconfig: "tsconfig.prod.json",
+		typescript({
+			tsconfig: 'tsconfig.prod.json',
 		}),
 		terser({
 			format: {
-				comments: false
-			}
+				comments: false,
+			},
 		}),
-	]
+	],
 };

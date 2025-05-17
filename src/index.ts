@@ -1,4 +1,4 @@
-import { range } from './utils';
+import {range} from './utils';
 
 interface Point {
 	x: number;
@@ -17,7 +17,7 @@ export interface Props {
 }
 
 export default class LissajousLoader {
-	private readonly canvas: HTMLCanvasElement
+	private readonly canvas: HTMLCanvasElement;
 	private readonly context: CanvasRenderingContext2D;
 	private readonly props: Props;
 	private readonly points: Point[];
@@ -43,8 +43,8 @@ export default class LissajousLoader {
 	 * Конвертирует координаты точки тригонометрического круга в координаты точки на канвасе
 	 */
 	private readonly convertPoint = ({x, y}: Point): Point => {
-		const { width, height } = this.canvas;
-		const { padding = 16 } = this.props;
+		const {width, height} = this.canvas;
+		const {padding = 16} = this.props;
 
 		const center: Point = {
 			x: width / 2,
@@ -52,13 +52,13 @@ export default class LissajousLoader {
 		};
 
 		return {
-			x: center.x + (x * (width - padding) / 2),
-			y: center.y - (y * (height - padding) / 2),
+			x: center.x + (x * (width - padding)) / 2,
+			y: center.y - (y * (height - padding)) / 2,
 		};
-	}
+	};
 
 	private calculatePoints(): Array<Point> {
-		const { step = 0.05, xFrequency, yFrequency, delta } = this.props;
+		const {step = 0.05, xFrequency, yFrequency, delta} = this.props;
 
 		const args = range(0, 2 * Math.PI, step);
 		args.push(2 * Math.PI);
@@ -72,7 +72,7 @@ export default class LissajousLoader {
 	}
 
 	public start(): void {
-		const { colour = '000000', lineWidth = 1 } = this.props;
+		const {colour = '000000', lineWidth = 1} = this.props;
 
 		this.context.lineCap = 'round';
 		this.context.strokeStyle = colour;
@@ -88,15 +88,15 @@ export default class LissajousLoader {
 			this.requestId = null;
 			this.clear();
 		}
-	};
+	}
 
 	public clear(): void {
-		const { width, height } = this.canvas;
+		const {width, height} = this.canvas;
 		this.context.clearRect(0, 0, width, height);
 	}
 
 	private readonly drawingStep = (): void => {
-		const { pause = 1000 } = this.props;
+		const {pause = 1000} = this.props;
 
 		if (this.currentPointIndex >= this.points.length) {
 			this.currentPointIndex = 0;
@@ -116,8 +116,12 @@ export default class LissajousLoader {
 			const initialPoint = this.points[this.currentPointIndex];
 			this.context.moveTo(initialPoint.x, initialPoint.y);
 
-			for (let i = this.currentPointIndex + 1; i < this.points.length; i++) {
-				const { x, y } = this.points[i];
+			for (
+				let i = this.currentPointIndex + 1;
+				i < this.points.length;
+				i++
+			) {
+				const {x, y} = this.points[i];
 				this.context.lineTo(x, y);
 			}
 		} else {
@@ -125,7 +129,7 @@ export default class LissajousLoader {
 			this.context.moveTo(initialPoint.x, initialPoint.y);
 
 			for (let i = 1; i <= this.currentPointIndex; i++) {
-				const { x, y } = this.points[i];
+				const {x, y} = this.points[i];
 				this.context.lineTo(x, y);
 			}
 		}
@@ -134,6 +138,5 @@ export default class LissajousLoader {
 
 		this.currentPointIndex++;
 		this.requestId = requestAnimationFrame(this.drawingStep);
-	}
+	};
 }
-

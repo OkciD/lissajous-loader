@@ -93,3 +93,7 @@ typings/
 dist
 .DS_Store
 out
+
+.vscode
+
+*storybook.log
